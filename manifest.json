@@ -1,0 +1,26 @@
+{
+  "name": "Crop Selection",
+  "description": "Crop Selection Without Extra Text",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "icons": {
+    "16": "/images/copy16.png",
+    "32": "/images/copy32.png",
+    "48": "/images/copy48.png",
+    "128": "/images/copy128.png"
+  }
+}
