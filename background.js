@@ -3,10 +3,11 @@ function crop() {
     'https://www.gongkaoleida.com': /\n---------------------([^]+)/g,
     'http://localhost:3001': /\n---------------------([^]+)/g,
   }
+  let origin = window.location.origin
+  if (!hash[origin]) return
   document.addEventListener("copy", function(e) {
     const selection = document.getSelection();
     let text = selection.toString()
-    let origin = window.location.origin
     text = text.replace(hash[origin], '')
     console.log("From Chrome Extension Crop Selection: ", text);
     e.clipboardData.setData("text/plain", text);
