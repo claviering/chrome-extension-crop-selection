@@ -1,7 +1,24 @@
+// fuck csdn setting user-select: none
+function setUserSelect() {
+  console.log('setUserSelect load');
+  const hash = {
+    'https://blog.csdn.net': ['pre', 'code']
+  }
+  let origin = window.location.origin
+  if (!hash[origin]) return
+  hash[origin].forEach(select => {
+    let doms = document.querySelectorAll(select)
+    doms.forEach(item => {
+      item.style.cssText = 'user-select: auto'
+    });
+  })
+}
 function crop() {
+  console.log('crop loaded');
   const hash = {
     'https://www.gongkaoleida.com': /\n---------------------([^]+)/g,
     'http://localhost:3001': /\n---------------------([^]+)/g,
+    'https://www.ahhhhfs.com': /\n本文来自：A姐分享([^]+)/g,
   }
   let origin = window.location.origin
   if (!hash[origin]) return
@@ -21,6 +38,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
     chrome.scripting.executeScript({
       target: { tabId: tabId},
       func: crop
+    });
+    chrome.scripting.executeScript({
+      target: { tabId: tabId},
+      func: setUserSelect
     });
   }
 }); 
